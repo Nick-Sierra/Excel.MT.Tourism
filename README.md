@@ -7,7 +7,7 @@
 This project focuses on geo data that tracks the movement patterns and travel behavior of visitors to different locations within the state of Montana. Your company provides data-driven insights to help destination marketers, travel brands, and organizations understand visitor behavior, measure the impact of marketing efforts, and make informed decisions to optimize return on ad spending.  
 
 ## Objective
-You work remotely for a company that specializes in location-based analytics and insights for the travel and tourism industry. Your clients are individual counties located across the United States. Using only the data provided, prepare a presentation based on your findings that will provide your client with actionable insights on their direct marketing efforts to increase tourism and maximize return on ad spending. 
+As a remote analyst specializing in location-based analytics for the travel and tourism industry, our goal is to deliver actionable insights to county-level clients in the U.S. to enhance their tourism marketing strategies and maximize ad spend returns. 
 
 ## Tools used in Analysis
 - Data Cleaning & Analysis: Microsoft Excel 
@@ -17,12 +17,12 @@ You work remotely for a company that specializes in location-based analytics and
 ### Ask Phase:
 To address the business task of understanding visitors travel trends, lets ask some questions to guide our analysis:
 
-- Where are the visitors originating 
-- Weekday vs. weekend trends
-- Average days stayed per origin market  
-- Average days stayed per arrival market
-- Top 10 Origin Markets by Length of Stay
-- In-state visitation trends 
+- High-Volume Origin Locations
+- Score-based system by origin market for volume and length of stay 
+- Weekday vs. weekend visitation trends
+- Top average stay durations per origin market
+- Top average stay durations per arrival market
+- In-state vs. out-of-state visitation trends
   
 ### Prepare Phase:
 - The dataset used for this project focuses on visitaion trends for January 2018, and January and February of 2019.
@@ -35,7 +35,8 @@ To address the business task of understanding visitors travel trends, lets ask s
 
 During the process phase, the data cleaning steps were carried out in Microsoft Excel. The following actions were performed: 
 - **Validating Column Values:** 44 files removed where Origin_City = Arrival_County
-- **Removing Data:** Stays less than 4 hours (277), and trips less than 50 miles (16), were removed.  
+- **Removing Data:** Stays less than 4 hours (277), and trips less than 50 miles (16), were removed.
+- **Creating Score-Based System:** The Column "Combined_Score" was added to provide a balanced emphasis on volume of visitors and duration of stay. The following formulas were used: (E2 - MIN($E$2:$E$7390)) / (MAX($E$2:$E$7390) - MIN($E$2:$E$7390)) to normalize arrival volume. (J2 - MIN($J$2:$J$7390)) / (MAX($J$2:$J$7390) - MIN($J$2:$J$7390)) to normalize length of stay in MT. Then the two columns were aded to create the Combined Score Value. 
 - **Adding the Sum_Arrivals_by_City Column:** A new column named "Sum_Arrivals_by_City" was added to include the sum of arrivals by each city. The formula SUM(IF(C2=C:C,E:E)) was used.
 - **Adding the Sum_Arrivals_by_County Column:** A new column named "Sum_Arrivals_by_County" was added to to include the sum of arrivals by each county. The formula SUM(IF(D2=D:D,E:E)) was used.
 - **Adding the Avg_length_of_stay_per_county_days Column:** A new column named "Avg_length_of_stay_per_county_days" was added to to include the average length of stay per visitor in each county. The formula AVERAGE(IF(D2=D:D,I:I))/1440 was used.
